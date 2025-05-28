@@ -1,0 +1,67 @@
+/* إعدادات عامة */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #551665;
+  color: #fefefe;
+  direction: rtl;
+}
+
+/* تنسيق القسم الرئيسي */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* الشعار */
+.logo img {
+  width: 120%; /* أفضل من تحديد بيكسلات */
+  max-width: 100%;
+  margin-bottom: 25px;
+}
+
+/* النص */
+.description {
+  font-size: 32;
+  font-weight: bold;
+  line-height: 1.6;
+  text-align: justify;
+  max-width: 100%;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+/* زر الدخول */
+.button-container img {
+  width: 90%;
+  max-width: 270px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.button-container img:hover {
+  transform: scale(1.05);
+}
+
+/* ميديا كويري للشاشات الصغيرة */
+@media (max-width: 480px) {
+  .description {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .logo img,
+  .button-container img {
+    width: 80%;
+  }
+
+  .hero {
+    padding: 10px 0px;
+  }
+}
