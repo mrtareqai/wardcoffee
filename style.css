@@ -1,0 +1,255 @@
+/* إعداد عام للصفحة */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff9ec;
+  color: #333;
+}
+
+/* الحاوية الأساسية */
+.container {
+  max-width: 100%;
+  margin: auto;
+  background: #fff;
+  border-radius: 0px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #551665;
+  padding: 80%;
+  position: relative;
+}
+
+.inner-border {
+  border: 3px solid #551665;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 0 10px #551665;
+  overflow: hidden;
+}
+
+/* الشريط العلوي */
+.header {
+  background: #551665;
+  color: white;
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  height: 0px; /* لتحديد مساحة التأثير */
+  overflow: hidden;
+}
+
+/* أنيميشن الشعار والنص */
+.logo-img,
+.logo-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* الشعار */
+.logo-img {
+  animation-name: show-logo;
+  z-index: 2;
+  max-width: 150px;
+}
+
+/* النص */
+.logo-text {
+  animation-name: show-text;
+  direction: rtl;
+  font-size: 12px;
+  line-height: 1.5;
+  padding:-20px;
+  z-index: 0;
+  color: white;
+}
+@keyframes show-logo {
+  0%, 40% {
+    opacity: 1;
+  }
+  45%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-text {
+  0%, 40% {
+    opacity: 0;
+  }
+  45%, 100% {
+    opacity: 1;
+  }
+}
+
+
+/* الشعار المصغر في مكان آخر إن وُجد */
+.location-img {
+  height: 40px; /* تصحيح */
+  width: auto;
+}
+
+.header .location {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.header .icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* شريط البحث */
+.search-bar {
+  margin: 15px;
+  display: flex;
+  background: #e6e3da;
+  border-radius: 12px;
+  overflow: hidden;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-bar button {
+  background: #344ec0;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* القائمة الأفقية */
+.category-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 10px 8px;
+  padding-left: 5px;
+}
+
+.categories {
+  display: inline-flex;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.category {
+  flex: 0 0 auto;
+  background: #e6e3da;
+  color: #333;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  width: 88px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category.selected {
+  background: #344ec0;
+  color: white;
+  font-weight: bold;
+}
+
+/* بطاقات الطعام */
+.food-card {
+  margin: 15px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.food-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.food-info {
+  padding: 25px;
+}
+
+.food-info h4 {
+  margin: 0;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl; /* ضروري لأن الصفحة بالعربية */
+  flex-direction: row-reverse; /* هذه السطر يضع الاسم يمين والسعر يسار */
+}
+
+
+.food-info p {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* أزرار أسفل الشاشة */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: #551665;
+  padding: 0px 1px;
+  border-radius: 10px;
+  position: fixed;
+  bottom: -7px;
+  width: 94%;
+  max-width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+/* إطار الصفحة */
+.page-frame {
+  border: 5px solid #551665;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: calc(100vh - 20px);
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* أيقونات التواصل */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}

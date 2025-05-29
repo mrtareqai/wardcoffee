@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج الشكاوى الاقتراحات</title>
+  <link rel="icon" href="photos/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="styleforthefeedback.css">
+</head>
+<body>
+  <div class="container">
+    <div class="inner-border">
+
+      <!-- الهيدر العلوي -->
+      <header class="header">
+        <img src="photos/logo.png" alt="Logo" class="location-img">
+        <div class="location">الاقتراحات و الشكاوي</div>
+        <div class="icons">
+          <!-- أيقونات إضافية إذا رغبت -->
+        </div>
+      </header>
+
+      <!-- نموذج الشكاوى الاقتراحات -->
+      <div class="content">
+        <h4>لأننا نهتم </h4>
+        <form id="contactForm">
+          <label for="name">الاسم الكامل</label>
+          <input type="text" name="name" id="name" placeholder="الاسم بالكامل - اختياري" >
+
+          <label for="phone">رقم الهاتف</label>
+          <input type="tel" name="phone" id="phone" placeholder="رقم الهاتف - اختياري" >
+
+          <label for="type">نوع الرسالة</label>
+          <select name="type" id="type" required>
+            <option value="">اختر نوع الرسالة</option>
+            <option value="الاقتراح">الاقتراح</option>
+            <option value="شكوى">شكوى</option>
+          </select>
+
+          <label for="message">الرسالة</label>
+          <textarea name="message" id="message" placeholder="اكتب رسالتك هنا" required></textarea>
+
+          <button type="submit"> إرسال</button>
+        </form>
+        <p id="statusMsg"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- شريط التنقل السفلي -->
+  <nav class="bottom-nav">
+    <a href="index.html" aria-label="الصفحة الرئيسية">
+      <button type="button">🏠</button>
+    </a>
+    <a href="map.html" aria-label="صفحة الموقع">
+      <button type="button">
+        <img src="photos/location.png" alt="location" class="location-img" width="10" height="10">
+      </button>
+    </a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

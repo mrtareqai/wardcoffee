@@ -1,0 +1,162 @@
+/* style.css */
+
+/* إعداد عام للصفحة */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff9ec;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* الحاوية الأساسية */
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.inner-border {
+  border: 5px solid #551665;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 0 10px #551665;
+  overflow: hidden;
+}
+
+/* الشريط العلوي */
+.header {
+  background: #551665;
+  color: #e6e3da;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.location-img {
+  height: 50px;
+  width: auto;
+}
+
+.location {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* محتوى النموذج */
+.content {
+  padding: 20px;
+}
+
+.content h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #551665;
+}
+
+/* الايقونات */
+.social-icons {
+  margin-top: 20px;
+  text-align: center; /* يجعل الأيقونات في المنتصف */
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 8px;
+  transition: transform 0.2s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+}
+
+.social-icons img {
+  width: 28px;   /* تصغير حجم الأيقونة */
+  height: 28px;
+  border-radius: 6px; /* حواف ناعمة */
+}
+
+/* تنسيق حقول النموذج */
+.content form input,
+.content form select,
+.content form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #e6e3da;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.content form input[type="tel"] {
+  direction: ltr;       /* لجعل الأرقام تكتب من اليسار لليمين */
+  text-align: right;    /* محاذاة النص داخل الحقل إلى اليمين */
+}
+
+.content form input:focus,
+.content form select:focus,
+.content form textarea:focus {
+  border-color: #551665;
+}
+
+.content form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: #551665;
+  color: #e6e3da;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.content form button:hover {
+  background: #44234e;
+  transform: translateY(-2px);
+}
+
+/* رسالة الحالة */
+#statusMsg {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+/* شريط التنقل السفلي */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: #551665;
+  padding: 8px 0;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 10px;
+  width: 90%;
+  max-width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+}
