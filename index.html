@@ -1,718 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl"> <!-- وضع RTL للغة العربية -->
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>mainmene</title>
-  <link rel="icon" href="photos/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css"> <!-- ربط بملف CSS الخارجي -->
-</head>
-
-<body>
-  <div class="page-frame">
-    <!-- الشريط العلوي -->
-    <div class="header" style="position: relative; height: 250px;">
-      <img src="photos/logo.png" alt="Logo" class="logo-img">
-      <div class="logo-text">
-        مطعم وكافيه "ورد" يقدم تجربة طعام صحية وشهية بمكونات طبيعية طازجة.
-        نستخدم زيت الزيتون ونغسل الخضروات بعناية لضمان نظافتها.
-        نبتعد عن المنكهات الصناعية والملح الصيني، 
-        ونعتمد أدوات طهي صحية ومعايير نظافة عالمية. 
-        صور أطباقنا واقعية كما تُقدَّم، لأن الأمانة تبدأ من المطبخ.
-      </div>
-    </div>
-
-    <!-- شريط البحث -->
-    <!-- شريط البحث -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="بحث...">
-      <button onclick="search()">🔍</button>
-    </div>
-
-    <!-- ربط JavaScript مباشرة -->
-    <script>
-    function search() {
-      const query = document.getElementById('searchInput').value.trim();
-      const container = document.getElementById('food-list');
-      container.innerHTML = '';
-
-      if (!query) {
-        alert("الرجاء إدخال كلمة للبحث");
-        return;
-      }
-
-      let resultsFound = false;
-      const maxPrice = !isNaN(query) ? parseFloat(query) : null;
-
-      for (const category in foodData) {
-        foodData[category].forEach(item => {
-          const itemName = item.name || "";
-          const itemPrice = parseFloat(item.price) || 0;
-
-          const matchesName = itemName.includes(query);
-          const matchesPrice = maxPrice !== null && itemPrice <= maxPrice;
-
-          if (matchesName || matchesPrice) {
-            resultsFound = true;
-            const card = document.createElement('div');
-            card.className = 'food-card';
-            card.innerHTML = `
-              ${item.image ? `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none';">` : ""}
-              <div class="food-info">
-                <h4>${item.price} <span>${item.name}</span></h4>
-                ${item.description ? `<p>${item.description}</p>` : ""}
-              </div>
-            `;
-            container.appendChild(card);
-          }
-        });
-      }
-
-      if (!resultsFound) {
-        container.innerHTML = `<p style="text-align:center; padding: 20px;">لا توجد نتائج تطابق "${query}"</p>`;
-      }
-    }
-
-    </script>
-
-
-    <!-- القائمة الأفقية -->
-    <div class="category-scroll">
-      <div class="categories">
-
-        <button class="category selected ">🥗<br>الافطار</button>
-        <button class="category">🥪<br>السندويشات</button>
-        <button class="category">🍕<br>بيتزا</button>
-        <button class="category">🌱<br>السلطات</button>        
-        <button class="category">🍲<br>شوربة</button>        
-        <button class="category">🍽️<br>الاطباق</button>
-        <button class="category">👶<br>الاطفال</button>
-        <button class="category">🍰<br>الحلويات</button>
-        <button class="category">🥤<br>المشروبات_البارده</button>
-        <button class="category">☕️<br>المشروبات_الساخنة</button>
-        <button class="category">💨<br>الشيش</button>
-      </div>
-    </div>
-
-    <!-- قسم الطعام (يتم ملؤه ديناميكيًا) -->
-    <div id="food-list"></div>
-  </div>
-
-  <!-- أزرار التنقل السفلية -->
-
-  <nav class="bottom-nav">
-    <a href="fedback.html" aria-label="صفحة الموقع">
-      <button type="button">
-        <div class="location">
-          <img src="photos/qusition.png" alt="location" class="location-img" width="20" height="20">
-        </div>
-      </button>
-    </a>
-
-    <a href="map.html" aria-label="صفحة الموقع">
-      <button type="button">
-        <div class="location">
-          <img src="photos/location.png" alt="location" class="location-img" width="20" height="20">
-        </div>
-      </button>
-    </a>
-
-  </nav>
-  </div>
-
-  <!-- سكربت عرض البيانات -->
-  <script>
-    const foodData = {
-      الافطار:[
-        {
-          name: "فطور مصري 4 اشخاص-الطلب بالحجز",
-          price: "7000",
-          image: "photos/breakfast/1_breakfast.jpg"
-        },
-        {
-          name: "طبق كاربوز",
-          price: "5000",
-
-          image: "photos/breakfast/2_breakfast.jpg"
-        },       
-        {
-          name: "فاصوليا مع المقبلات",
-          price: "1500",
-          image: "photos/breakfast/4_breakfast.jpg"
-        },
-        {
-          name: "طبق بهجه",
-          price: "5000",
-          image: "photos/breakfast/5_breakfast.jpg"
-        },
-        {
-          name: "فرنش توست مع عصير فراوله",
-          price: "1500",
-          image: "photos/breakfast/6_breakfast.jpeg"
-        },
-        {
-          name: "فرنش توست مع شاي",
-          price: "1500",
-
-          image: "photos/breakfast/7_breakfast.jpeg"
-        },
-        {
-          name: "فطور تركي 4 اشخاص-الطلب بالحجز",
-          price: "7000",
-          image: "photos/breakfast/8_breakfast.jpg"
-        },
-        {
-          name: "فطرو شامي 4 اشخاص - الطلب بالحجز",
-          price: "7000",
-
-          image: "photos/breakfast/9_breakfast.jpg"
-        },
-        {
-          name: "بان كيك مع شاي",
-          price: "1000",
-          image: "photos/breakfast/10_breakfast.jpeg"
-        },
-        {
-          name: "بان كيك مع عصير فراوله",
-          price: "1500",
-
-          image: "photos/breakfast/11_breakfast.jpeg"
-        },
-        {
-          name: "بيض مع المقبلات",
-          price: "1500",
-          image: "photos/breakfast/12_breakfast.jpg"
-        },
-        {
-          name: "خبز طاوه مع المقبلات و شاي",
-          price: "1500",
-          image: "photos/breakfast/13_breakfast.jpeg"
-        },
-        {
-          name: "خبز طاوه مع المقبلات و شاي حليب",
-          price: "1800",
-          image: "photos/breakfast/14_breakfast.jpg"
-        },
-        {
-          name: "اضافه خبز",
-          price: "500",
-
-          image: "photos/breakfast/3_breakfast.jpeg"
-        },   
-        {
-          name: "مطيط",
-          price: "1200",
-          image: "photos/breakfast/15_breakfast.jpeg"
-        },
-        {
-          name: " باخمري",
-          price: "600",
-          image: "photos/breakfast/16_1breakfast.jpg"
-        },
-        {
-          name: "فطور 8 اشخاص-الطلب بالحجز",
-          price: "15000",
-          image: "photos/breakfast/16_breakfast.jpg"
-        }, 
-      ],
-      السندويشات: [
-        {
-          name: "سندويش زنجر",
-          price: "2500",
-          image: "photos/kidsfood/1.jpg"
-        },
-
-        {
-          name: "برجر دجاج",
-          price: "1900",
-          image: "photos/kidsfood/2.png"
-        },
-        {
-          name: "برجر دجاج وجبه",
-          price: "2600",
-        },  
-        {
-          name: "بجرجر لحم",
-          price: "2500",
-          image: "photos/kidsfood/3.png"
-        },
-        {
-          name: "بجرجر لحم وجبه",
-          price: "3200",
-        },
-        {
-          name: "اضافه شبس",
-          price: "600",
-          image: "photos/kidsfood/4.jpeg"
-        },
-        {
-          name: "ساندوتش فاهيتا بخبز الترتيلا",
-          price: "2500",
-          image: "photos/sandwiches/.jpg"
-        },
-
-        {
-          name: "ساندوتش فاهيتا بخبز البان",
-          price: "1500",
-          image: "photos/sandwiches/.png"
-        },
-        {
-          name: "ساندوتش فاهيتا بخبز التست",
-          price: "1500",
-        },  
-        {
-          name: "ساندوتش استربس بخبز التورتيلا",
-          price: "2000",
-          image: "photos/sandwiches/.png"
-        },
-        {
-          name: "ساندوتش تونه بخبز البان ",
-          price: "1000",
-        },
-        
-        {
-          name: "ساندوتش ميني برجر لحم",
-          price: "1300",
-          image: "photos/kidsfood/.jpeg"
-        },
-        // {
-        //   name: "سندويش تونه",
-        //   price: "$11.00",
-        //   image: "photos/sandwiches/5.jpg"
-        // },
-
-        // {
-        //   name: "سندويش تونه",
-        //   price: "$11.00",
-        //   image: "photos/sandwiches/6.jpg"
-        // },        
-
-      ],
-      الاطباق: [
-        {
-          name: "دجاج تيلاندي",
-          price: "1800",
-          image: "photos/maindeshes/1.jpg"
-        },
-        {
-          name: "وجبه دجاج تيلاندي مع الرز",
-          price: "3000",
-          image: "photos/maindeshes/2.jpg"
-        },
-        {
-          name: "تشكن ونجز بصوص البافلو",
-          price: "2000",
-          image: "photos/maindeshes/3.jpeg"
-        },
-        {
-          name: "تشكن ونجز بالصوص الحار",
-          price: "2000",
-          image: "photos/maindeshes/4.jpg"
-        },
-        {
-          name: "مكرونه حمراء مع الصوص",
-          price: "1200",
-          image: "photos/maindeshes/5.jpg"
-        },
-        {
-          name: "مكرونه بيضاء",
-          price: "000",
-          image: "photos/maindeshes/6.jpg"
-        },
-        {
-          name: "مكرونه بصوص الجبنه",
-          price: "1500",
-          image: "photos/maindeshes/8.jpg"
-        },
-        {
-          name: "وجبه بوب كورن دحاح (حار - عادي)",
-          price: "2000",
-          image: "photos/maindeshes/7.jpg"
-        },
-        {
-          name: " بوب كورن دحاح (حار - عادي)",
-          price: "1500",
-          image: "photos/maindeshes/9.jpg"
-        },
-        
-      ],
-
-      شوربة: [
-        {
-          name: "شوربة عدس",
-          price: "1000",
-
-          image: "photos/soups/1.jpg"
-        },
-        {
-          name: "شوربة شوفان بالدجاج",
-          price: "1100",
-
-          image: "photos/soups/2.jpeg"
-        },
-        {
-          name: "شوربة كريمه بالدجاج",
-          price: "1300",
-
-          image: "photos/soups/3.jpeg"
-        },
-      ],
-      الاطفال: [
-        {
-          name: "وجبات اطقال",
-          price: "0000",
-          image: "photos/kidsfood/.jpeg"
-        },
-      ],
-      السلطات: [
-        {
-          name: "سلطه يونانيه",
-          price: "700",
-          image: "photos/Salads&Appetizers/1.jpg"
-        },
-
-        {
-          name: "سلطه فتوش",
-          price: "1000",
-          image: "photos/Salads&Appetizers/2.jpeg"
-        },
-
-        {
-          name: "سلطه جرجير",
-          price: "1000",
-          image: "photos/Salads&Appetizers/3.jpeg"
-        },        
-
-      ],
-      الحلويات: [
-        {
-          name: "سويس رول بالشوكالاته",
-          price: "700",
-          image: "photos/dessert/1.jpg"
-        },
-
-        {
-          name: "كوكيز",
-          price: "600",
-          image: "photos/dessert/2.jpg"
-        },
-        
-        {
-          name: "حلا الكريب بالشوكلاته",
-          price: "2000",
-          image: "photos/dessert/4.jpg"
-        },   
-        {
-          name: "10 حبنات مني بان كيك بالشوكلاتهاو العسل",
-          price: "1000",
-          image: "photos/dessert/5.jpg"
-        },        
-
-        {
-          name: "5 حبنات مني بان كيك بالشوكلاتهاو العسل",
-          price: "500",
-          image: "photos/dessert/.jpg"
-        },        
-
-      ],
-      المشروبات_البارده: [
-        {
-          name: "⚪سان شاين (توت ازرق, توت احمر, خوخ, فراوله برتقال, عناب, ليمون مع نعناع)",
-          price: "1000",
-          image: "photos/colddrinks/1.jpg"
-        },
-        {
-          name: "⚪سان باور شاين (توت ازرق, توت احمر, خوخ, فراوله برتقال, عناب, ليمون مع نعناع)",
-          price: "1400"
-        },
-
-        {
-          name: "عصير سان توب",
-          price: "300"
-        },
-
-        {
-          name: "عصيير سن كويك",
-          price: "500"
-        },        
-
-        {
-          name: "مشروب غازي",
-          price: "400"
-        },
-
-        {
-          name: "ماء",
-          price: "300"
-        },        
-
-        {
-          name: "ايس موكا",
-          price: "1200"
-        },
-
-        {
-          name: "ايس تي خوخ",
-          price: "1000"
-        },        
-
-        {
-          name: "ورد لاتيه",
-          price: "1700"
-        },
-
-        {
-          name: "ورد مكس",
-          price: "1500"
-        },
-
-        {
-          name: "سبانش لاتيه",
-          price: "1400"
-        },        
-
-        {
-          name: "ايس لاتيه (قهوة بارده)",
-          price: "1200"
-        },
-
-        {
-          name: "ايس فرباتشون (كرامل - شوكلاته)",
-          price: "1400"
-        },
-
-        {
-          name: "كراميل لاتيه",
-          price: "1500"
-        },
-
-        {
-          name: "عصير فراوله",
-          price: "1000",
-          image: "photos/colddrinks/2.jpg"
-        },
-
-        {
-          name: "عصير فراوله بالحليب",
-          price: "1200"
-        },
-
-        {
-          name: "عصير زبيب اسود",
-          price: "1500"
-        },        
-
-        {
-          name: "عصير منجو",
-          price: "1200"
-        },
-
-        {
-          name: "عصير منجو بالحليب",
-          price: "1400"
-        },        
-
-        {
-          name: "عصير موز",
-          price: "600"
-        },
-
-        {
-          name: "عصير موز والحليب",
-          price: "600"
-        },        
-
-        {
-          name: "عصير كركديه",
-          price: "600"
-        },
-
-        {
-          name: "عصير مكس كركديه",
-          price: "1000"
-        },      
-        {
-          name: "عصير حبحب",
-          price: "1200"
-        },
-        {
-          name: "عصير برتقال",
-          price: "1200"
-        },
-        {
-          name: "عصير اليمون",
-          price: "1200"
-        },
-
-      ],
-      المشروبات_الساخنة: [
-        {
-          name: "كابتشونو",
-          price: "1000",
-          image: "photos/hotdrinks/1.jpg"
-        },
-        {
-          name: "كراميل لاتيه",
-          price: "1200"
-        },
-
-        {
-          name: "شوكلاته ساخنة",
-          price: "1000"
-        },
-
-        {
-          name: "موكا ساخنة",
-          price: "1200"
-        },        
-        {
-          name: "لاتيه ساخنة",
-          price: "1200"
-        },        
-
-        {
-          name: "اسبريسو رومانيو",
-          price: "1000"
-        },
-
-        {
-          name: "اسبريسو",
-          price: "1000"
-        },        
-
-        {
-          name: "امريكانو",
-          price: "1000"
-        },
-        {
-          name: "نيسكافي بالحليب",
-          price: "900"
-        },
-
-        {
-          name: "شاي حليب",
-          price: "600"
-        },
-
-        {
-          name: "شاي أحمر",
-          price: "400"
-        },        
-
-        {
-          name: "شاي أخضر",
-          price: "400"
-        },
-
-        {
-          name: "قهوه تركي",
-          price: "700"
-        },
-
-        {
-          name: "بن ساده",
-          price: "700",
-        },
-
-        {
-          name: "بن حليب",
-          price: "600"
-        },
-
-
-      ],
-      بيتزا: [
-        {
-          name: "بيتزا دجاج",
-          price: "4000",
-          image: "photos/pizza/1_pizza.jpeg"
-        },
-
-        {
-          name: "بتزا خضار",
-          price: "3500",
-          image: "photos/pizza/2_pizza.jpeg"
-        },      
-        {
-          name: "بيزا مرجريتا",
-          price: "3000",
-          image: "photos/pizza/3_pizza.jpeg"
-        },
-
-        {
-          name: "بيزا نحيفه بيستو صوص",
-          price: "3500",
-          image: "photos/pizza/4_pizza.jpg"
-        },      
-        
-        {
-          name: "بان بيتزا",
-          price: "3500",
-          image: "photos/pizza/5_pizza.jpeg"
-        },
-        {
-          name: "بيتزا محبي الجبنه",
-          price: "3500",
-          image: "photos/pizza/6.jpg"
-        },              
-      ],
-       الشيش: [
-        {
-          name: "شيشة ورد ",
-          price: "4000",
-          image: "photos/sheshah/1.jpg"
-        },
-        {
-          name: "شيشة الندى",
-          price: "4000",
-        }, 
-        {
-          name: "شيشة مكس",
-          price: "3500",
-        }, 
-        {
-          name: "شيشة نكهات",
-          price: "3000",
-        }, 
-        {
-          name: "شيشة شموخ",
-          price: "4000",
-        }, 
-      ]
-    };
-
-    // دالة عرض المنتجات
-    function renderFoodItems(category) {
-      const container = document.getElementById('food-list');
-      container.innerHTML = '';
-      foodData[category]?.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'food-card';
-        card.innerHTML = `
-          ${item.image ? `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none';">` : ""}
-          <div class="food-info">
-            <h4>${item.price} <span>${item.name}</span></h4>
-            ${item.description ? `<p>${item.description}</p>` : ""}
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // تغيير التصنيف عند الضغط على زر
-    document.querySelectorAll('.category').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.category').forEach(btn => btn.classList.remove('selected'));
-        button.classList.add('selected');
-        const categoryText = button.innerText.trim().split('\n')[1];
-        renderFoodItems(categoryText);
-      });
-    });
-
-    // عرض التصنيف الأول افتراضيًا
-    window.onload = () => {
-      renderFoodItems("الافطار");
-    };
-  </script>
-</body>
-</html>
